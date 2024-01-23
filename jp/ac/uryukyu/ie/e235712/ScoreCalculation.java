@@ -7,51 +7,51 @@ public class ScoreCalculation {
 
     // 点数を保存したMap
     private static Map<Integer, String> OyaOneMap = Map.of(
-        30, "500オール",40, "700オール",50, "800オール",60, "1000オール",70, "1200オール",80, "1300オール",90, "1500オール",100, "1600オール",110, "1800オール"
+        30, "1500",40, "2000",50, "2400",60, "2900",70, "3400",80, "3900",90, "4400",100, "4800",110, "5300"
     );
 
     private static Map<Integer, String> OyaTwoMap = Map.of(
-        20, "700オール", 30, "1000オール",40, "1300オール",50, "1600オール",60, "2000オール",70, "2300オール",80, "2600オール",90, "2900オール",100, "3200オール",110, "3600オール"
+        20, "2000", 30, "2900",40, "3900",50, "4800",60, "5800",70, "6800",80, "7700",90, "8700",100, "9600",110, "10600"
     );
 
     private static Map<Integer, String> OyaThreeMap = Map.of(
-        20, "1300オール",30, "2000オール",40, "2600オール",50, "3200オール",60, "3900オール"
+        20, "3900",30, "5800",40, "7700",50, "9600",60, "11600",70, "満貫12000",80, "満貫12000",90, "満貫12000",100, "満貫12000",110, "満貫12000"
     );
 
     private static Map<Integer, String> OyaFourMap = Map.of(
-        20, "2600オール",30, "3900オール"
+        20, "7700",30, "11600",40, "満貫12000",50, "満貫12000",60, "満貫12000",70, "満貫12000",80, "満貫12000",90, "満貫12000",100, "満貫12000",110, "満貫12000"
     );
 
     private static Map<Integer, String> OyaOverFiveMap = Map.of(
-        5, "満貫4000オール",6, "跳満6000オール",7, "跳満6000オール",8, "倍満8000オール",9, "倍満8000オール",10, "倍満8000オール",11, "三倍満12000オール",12, "三倍満12000オール",13, "数え役満16000オール"
+        5, "満貫12000",6, "跳満18000",7, "跳満18000",8, "倍満24000",9, "倍満24000",10, "倍満24000",11, "三倍満36000",12, "三倍満36000",13, "数え役満48000"
     );
 
     private static Map<Integer, String> OyaTitoiMap = Map.of(
-        2, "800オール",3, "1600オール",4, "3200オール"
+        2, "2400",3, "4800",4, "9600"
     );
 
     private static Map<Integer, String> KoOneMap = Map.of(
-        30, "300・500",40, "400・700",50, "400・800",60, "500・1000",70, "600・1200",80, "700・1300",90, "800・1500",100, "800・1600",110, "900・1800"
+        30, "1000",40, "1300",50, "1600",60, "2000",70, "2300",80, "2600",90, "2900",100, "3200",110, "3600"
     );
 
     private static Map<Integer, String> KoTwoMap = Map.of(
-        20, "400・700", 30, "500・1000",40, "700・1300",50, "800・1600",60, "1000・2000",70, "1200・2300",80, "1300・2600",90, "1500・2900",100, "1600・3200",110, "1800・3600"
+        20, "1300", 30, "2000",40, "2600",50, "3200",60, "3900",70, "4500",80, "5200",90, "5800",100, "6400",110, "7100"
     );
 
     private static Map<Integer, String> KoThreeMap = Map.of(
-        20, "700・1300",30, "1000・2000",40, "1300・2600",50, "1600・3200",60, "2000・3900"
+        20, "2600",30, "3900",40, "5200",50, "6400",60, "7700",70, "満貫8000",80, "満貫8000",90, "満貫8000",100, "満貫8000",110, "満貫8000"
     );
 
     private static Map<Integer, String> KoFourMap = Map.of(
-        20, "1300・2600",30, "2000・3900"
+        20, "5200",30, "7700",40, "満貫8000",50, "満貫8000",60, "満貫8000",70, "満貫8000",80, "満貫8000",90, "満貫8000",100, "満貫8000",110, "満貫8000"
     );
 
     private static Map<Integer, String> KoOverFiveMap = Map.of(
-        5, "満貫2000・4000",6, "跳満3000・6000",7, "跳満3000・6000",8, "倍満4000・8000",9, "倍満4000・8000",10, "倍満4000・8000",11, "三倍満6000・12000",12, "三倍満6000・12000オール",13, "数え役満8000・16000"
+        5, "満貫8000",6, "跳満12000",7, "跳満12000",8, "倍満18000",9, "倍満18000",10, "倍満18000",11, "三倍満24000",12, "三倍満24000",13, "数え役満32000"
     );
 
     private static Map<Integer, String> KoTitoiMap = Map.of(
-        2, "400・800",3, "800・1600",4, "1600・3200"
+        2, "1600",3, "3200",4, "6400"
     );
 
     public static int ork = -1;
@@ -71,24 +71,8 @@ public class ScoreCalculation {
     public static String questionB(String[] args, int ork) {
         // 飜数と符の入力を受け取る
         Scanner scanner = new Scanner(System.in);
-        int han = 0;
-        int fu = 20;
-        int pinfu = 0;
-        int titoi = 0;
-        int kron = 0;
-        int ron = 0;
-        int kmati = 0;
-        int mati = 0;
-        int zyanto = 0;
-        int kzyanto = 0;
-        int n_minko = 0;
-        int y_minko = 0;
-        int n_anko = 0;
-        int y_anko = 0;
-        int n_minkan = 0;
-        int y_minkan = 0;
-        int n_ankan = 0;
-        int y_ankan = 0;
+        int han = 0;int fu = 20;int pinfu = 0;int titoi = 0;int kron = 0;int ron = 0;int kmati = 0;int mati = 0;int zyanto = 0;int kzyanto = 0;
+        int n_minko = 0;int y_minko = 0;int n_anko = 0;int y_anko = 0;int n_minkan = 0;int y_minkan = 0;int n_ankan = 0;int y_ankan = 0;
 
         // 得点計算
         String totalPoints = null;
@@ -164,7 +148,6 @@ public class ScoreCalculation {
 
     // 得点計算メソッド
     private static String calculatePoints(int ork, int han, int fu) {
-           // 得点の計算
         String basePoints = "null";
         if (ork == 0 & han == 1 & fu == 20) {
             // 親の平和のみ一飜の場合
@@ -212,7 +195,6 @@ public class ScoreCalculation {
             // 子の五飜以上の場合
             basePoints = KoOverFiveMap.get(han);
         }
-
         return basePoints;
     }
 }
