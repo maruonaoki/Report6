@@ -54,31 +54,131 @@ public class ScoreCalculation {
         2, "400・800",3, "800・1600",4, "1600・3200"
     );
 
-    public static void main(String[] args) {
+    public static int ork = -1;
+
+    public static Integer questionA(String[] args) {
+        
+        while (ork != 0 && ork != 1) {
+            Scanner scannerOrk = new Scanner(System.in);
+            System.out.print("親か子か入力してください（親なら0、子なら1と入力）: ");
+            ork = scannerOrk.nextInt();
+            if (ork != 0 && ork != 1) {
+                System.out.println("正しい値を入力してください。");
+            }
+        }
+        return ork;
+    }
+    public static String questionB(String[] args, int ork) {
         // 飜数と符の入力を受け取る
         Scanner scanner = new Scanner(System.in);
-        System.out.print("親か子か入力してください（親なら0子なら1と入力）: ");
-        int ork = scanner.nextInt();
-        System.out.print("飜数を入力してください: ");
-        int han = scanner.nextInt();
-        System.out.print("符を入力してください: ");
-        int fu = scanner.nextInt();
+        int han = 0;
+        int fu = 20;
+        int pinfu = 0;
+        int titoi = 0;
+        int kron = 0;
+        int ron = 0;
+        int kmati = 0;
+        int mati = 0;
+        int zyanto = 0;
+        int kzyanto = 0;
+        int n_minko = 0;
+        int y_minko = 0;
+        int n_anko = 0;
+        int y_anko = 0;
+        int n_minkan = 0;
+        int y_minkan = 0;
+        int n_ankan = 0;
+        int y_ankan = 0;
 
         // 得点計算
-        String totalPoints = calculatePoints(ork, han, fu);
-
-        // 結果を出力
-        System.out.println("得点: " + totalPoints);
+        String totalPoints = null;
+        while (totalPoints == null) {
+            System.out.print("飜数を入力してください: ");
+            han = scanner.nextInt();
+            if (han >= 5){
+                totalPoints = calculatePoints(ork, han, fu);
+                System.out.println("得点: " + totalPoints);
+            }else if(han <= 4){
+                System.out.print("平和を含みますか？（含むなら1と入力、含まないならそれ以外の数字を入力）: ");
+                pinfu = scanner.nextInt();
+                if (pinfu == 1){
+                    fu += 0;
+                    totalPoints = calculatePoints(ork, han, fu);
+                    System.out.println("得点: " + totalPoints);
+                } else if(pinfu != 1) {
+                    System.out.print("七対子を含みますか？（含むなら1と入力、含まないならそれ以外の数字を入力）: ");
+                    titoi = scanner.nextInt();
+                    if (titoi == 1){
+                        fu += 5;
+                        totalPoints = calculatePoints(ork, han, fu);
+                        System.out.println("得点: " + totalPoints);
+                    } else if (pinfu != 1 & titoi != 1){
+                        System.out.print("どうアガリましたか？:(数字を入力):1 門前ロン / 2 門前ツモ / 3 副露ロン / 4 副露ツモ:");
+                        kron = scanner.nextInt();
+                        if(kron == 1){
+                        ron = 10;
+                        } else if(kron == 2){
+                        ron = 2;
+                        } else if(kron == 3){
+                        ron = 0;
+                        } else if(kron == 4){
+                        ron = 2;
+                        }
+                        System.out.print("待ち牌は両面・双碰待ち以外ですか？(両面・双碰待ち以外なら1と入力、そうでないならそれ以外の数字を入力): ");
+                        kmati = scanner.nextInt();
+                        if (kmati == 1){
+                            mati += 2;
+                        }
+                        System.out.print("雀頭は役牌ですか？(役牌なら1と入力、そうでないならそれ以外の数字を入力): ");
+                        kmati = scanner.nextInt();
+                        if (kzyanto == 1){
+                            zyanto += 2;
+                        }
+                        System.out.print("中張牌の明刻は何個ですか？: ");
+                        n_minko = scanner.nextInt() * 2;
+                        System.out.print("么九牌の明刻は何個ですか？: ");
+                        y_minko = scanner.nextInt() * 4;
+                        System.out.print("中張牌の暗刻は何個ですか？: ");
+                        n_anko = scanner.nextInt() * 4;
+                        System.out.print("么九牌の暗刻は何個ですか？: ");
+                        y_anko = scanner.nextInt() * 8;
+                        System.out.print("中張牌の明槓は何個ですか？: ");
+                        n_minkan = scanner.nextInt() * 8;
+                        System.out.print("么九牌の明槓は何個ですか？: ");
+                        y_minkan = scanner.nextInt() * 16;
+                        System.out.print("中張牌の暗槓は何個ですか？: ");
+                        n_ankan = scanner.nextInt() * 16;
+                        System.out.print("么九牌の暗槓は何個ですか？: ");
+                        y_ankan = scanner.nextInt() * 32;
+                        int Fu = fu + ron + mati + zyanto + n_minko + y_minko + n_anko + y_anko + n_minkan + y_minkan + n_ankan + y_ankan;
+                        int lastfu = ((Fu + 9) / 10) * 10;
+                        totalPoints = calculatePoints(ork, han, lastfu);
+                        System.out.println("得点: " + totalPoints);
+                    }
+                }
+            }
+        }return totalPoints; 
     }
+    
+  
 
     // 得点計算メソッド
     private static String calculatePoints(int ork, int han, int fu) {
-        // 飜数と符に対応する得点を格納したMap
-   
-
-        // 得点の計算
-        String basePoints = "i";
-        if (ork == 0 & han == 1) {
+           // 得点の計算
+        String basePoints = "null";
+        if (ork == 0 & han == 1 & fu == 20) {
+            // 親の平和のみ一飜の場合
+            basePoints = OyaOneMap.get(30);
+        } else if (ork == 1 & han == 1 & fu == 20) {
+            // 子の平和のみ一飜の場合
+            basePoints = KoOneMap.get(30);
+        } else if (ork == 0 & fu == 25) {
+            // 親の七対子を含む場合
+            basePoints = OyaTitoiMap.get(han);
+        } else if (ork == 1 & fu == 25) {
+            // 子の七対子を含む場合
+            basePoints = KoTitoiMap.get(han);
+        }else if (ork == 0 & han == 1) {
             // 親の一飜の場合
             basePoints = OyaOneMap.get(fu);
         } else if (ork == 0 & han == 2) {
@@ -111,11 +211,7 @@ public class ScoreCalculation {
         } else if (ork == 1 & han >= 5) {
             // 子の五飜以上の場合
             basePoints = KoOverFiveMap.get(han);
-        } else if (ork == 1 & fu == 25) {
-            // 親の七対子を含む場合
-            basePoints = OyaTitoiMap.get(han);
         }
-
 
         return basePoints;
     }
